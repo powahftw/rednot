@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <style>
+      #root {
+        display: flex;
+        justify-content: center;
+        perspective: 1000px;
+      }
+
+      body {
+        font-family: 'Andale Mono', 'Consolas', 'Courier', monospace;
+        min-width: 280px;
+        padding: 6px;
+        margin: 6px;
+        text-align: center;
+        background-color: #2d3032;
+        box-shadow: 0 0 0 6px #9615db;
+        color: #d2d3d3;
+        min-height: 190px;
+      }
+
+      h1 {
+        margin: 8px 0;
+        text-transform: uppercase;
+        font-size: 1.8em;
+        font-weight: 600;
+      }
+
+      span {
+        user-select: none;
+        padding: 4px;
+        font-size: 110%;
+      }
+
+      .buttonSide,
+      .settingsSide {
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+        position: absolute;
+        backface-visibility: hidden;
+      }
+
+      .settingsSide {
+        align-items: flex-start;
+      }
+
+      .settingsSide p {
+        margin: 4px 0 0;
+      }
+
+      .buttonSide {
+        align-items: center;
+      }
+
+      button {
+        font-size: 120%;
+        background-color: #9615db;
+        border: none;
+        outline: none;
+        margin-bottom: 4px;
+        padding: 8px 12px;
+        box-shadow: 3px 3px 0 2px #2a1b3d;
+      }
+
+      button:active {
+        background-color: #790fb1;
+        transform: translateY(4px);
+      }
+
+      /* Animation related code */
+      .contentCard {
+        width: 100%;
+        transform-origin: center left;
+        transition: transform 1s ease-in-out;
+        transform-style: preserve-3d;
+      }
+
+      .settingsSide {
+        opacity: 0;
+        visibility: hidden;
+        transform: translateX(-100%) rotateY(-180deg);
+      }
+
+      .editSettings .contentCard {
+        transform: rotateY(180deg);
+      }
+
+      .editSettings .settingsSide {
+        opacity: 1;
+        visibility: visible;
+      }
+    </style>
+  </head>
+
+  <body>
+    <h1>Red-not</h1>
+    <div id="root">
+      <div class="contentCard">
+        <div class="buttonSide">
+          <p>Hold 2.5s to</p>
+          <button id="showSettings">Change Settings</button>
+          <p>You got blocked <b id="timesBlocked"></b> times</p>
+        </div>
+        <div class="settingsSide">
+          <span>
+            <input type="checkbox" id="enable" name="enable" />
+            <label for="enable">Enable</label>
+          </span>
+          <span>
+            <input type="checkbox" id="onlyHome" name="onlyHome" />
+            <label for="onlyHome">Block only Homepage</label>
+          </span>
+          <span>
+            <input type="checkbox" id="redirectOnBlock" name="redirectOnBlock" />
+            <label for="redirectOnBlock">Redirect away on block</label>
+          </span>
+        </div>
+      </div>
+    </div>
+    <script src="js/popup.js"></script>
+  </body>
+</html>
